@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Connect </title>
+</head>
+<body>
+
+	{% if error %}
+
+	{%if error == 'login_error'%} 
+		<h1> Invalid Credentials : Could not connect to the FTP server  </h1>
+
+	{% elif error == 'form_error' %}	
+		<h1> Invalid Data Format Provided In The Form </h1>
+	
+	{% endif %}
+	{% endif %}
+
+	<form action="." method="post" >
+		
+		{%csrf_token%}
+		{{form.as_p}}
+
+		<input type="submit" value="Connect">
+	</form>
+</body>
+</html>
