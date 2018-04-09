@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{%block title%} download files  {%endblock%}
+
+{% block main %} 
+
+<h1> Downloaded Files </h1>
+
+<ol>
+
+	{% for file in files%}
+
+		<li>{{file}}</li>		
+
+	{% endfor %}
+
+</ol>
+
+{% endblock %}

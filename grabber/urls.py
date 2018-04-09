@@ -3,6 +3,6 @@ from . import views
 urlpatterns = [
 
 	path('login/', views.FTP_Login.as_view(), name='login'),
-	path('dir-listing/', views.dir_listing, name='dir_listing'),
-	re_path(r'^', views.navigator, name='navigator'),
+	path('download_file/', views.FileDownload.as_view(), name='download'),
+	re_path(r'^navigator/', views.navigator, name='navigator'),
 ]

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %} Error {% endblock %}
+
+{% block main %} 
+	
+	<h1> Error Encountered </h1>
+
+	{% if error == 'download_path_error' %}
+
+		<h3> The Download Path Provided Does Not Exist! </h3>
+
+	{%elif error == 'login_error'%}
+
+		<h3> Invalid Credentials : Could not connect to the FTP server </h3>
+
+		<p> click on the login button below to retry loging in</p>
+		<p> <a class="btn btn-danger" href="{% url 'login' %}"> Login </a> </p> 	
+
+	{% elif error == 'connection_lost_error' %}	
+
+		<h3> Connection Lost.  </h3>
+
+		<p> click on the login button below to reconnect </p>
+		<p> <a class="btn btn-danger" href="{% url 'login' %}"> Login </a> </p> 	
+
+	{%endif%}
+
+{% endblock %}

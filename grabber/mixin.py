@@ -1,11 +1,13 @@
 from ftplib import FTP
 from .models import ConnectionData
+from django.shortcuts import redirect
 
 
 def log_in_to_ftp():
 	""" 
-	mixin to log in to given ftp credentials 
-	returns an ftp object
+	[function] logs in to given ftp credentials. 
+
+	Returns an ftp object
 	"""
 	# get ftp login credentials
 	data = ConnectionData.objects.get(id=1)

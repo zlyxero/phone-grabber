@@ -1,37 +1,48 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>listing</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-	{%if error %} 
+{% block title%} {{path}} {% endblock %}
 
-		<h1> Connection Lost  </h1>
+{% block main %} 
 
-		<a href="{% url 'login' %}"></a>
+	<div class="page-details">
+		<p><span><i class="fa fa-map-marker"></i> Current location:</span> {{path}} </p>
+		<p><span><i class="fa fa-folder"></i> Folders:</span> {{dir_list|length}}</p>
+		<p><span><i class="fa fa-files-o"></i> Files:</span>  {{file_list|length}}</p>
+	</div>
+	
+	<div>
 
-	{% else %}
-		
-		<h1> Directory Listing </h1>
-
-		<ol>
+	{% if dir_list %}
+		<h1> Browse folders in Current Location </h1>
 		
 		{% for dir in dir_list %} 
 			
-			<li><a href="{{path}}{{dir}}/">{{dir}}</a></li>
+			<p> <i class="fa fa-folder-open"></i> <a href="/navigator{{path}}{{dir}}/">{{dir}}</a></p>
 
-		{%endfor%}
+		{%endfor%}	
 
-		{% for file in file_list %} 
+	{% endif%}	
+
+	{% if file_list %}
+
+		<h1> Download Files in Current Location</h1>
+
+		<form method="post", action="{% url 'download'%}">
+			{%csrf_token%}
 			
-			<li>{{file}}</li>
+			{% for file in file_list %} 
 
-		{%endfor%}
+				<input type="checkbox" name="files" value="{{path}}{{file}}" > 
+				<i class="fa fa-clone"></i> {{file}} <br><br>				
 
+			{%endfor%}
+	{% endif %}
 
-		</ol>	
+			<p> Enter Full Download Path: <input type="text" name="download_path"></p>
 
-	{% endif %}	
-</body>
-</html>
+			<button class="btn btn-success" type="submit"> Download Selected Files</button>
+
+		</form>
+	</div>
+
+{% endblock %}

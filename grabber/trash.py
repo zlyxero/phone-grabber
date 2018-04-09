@@ -14,4 +14,4 @@
 # obj = Test()
 # obj.test_method()
 
-print("/root/name/address/".lstrip('/root'))
+print("/root/name/address/".strip('/root'))

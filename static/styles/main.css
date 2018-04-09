@@ -1,0 +1,14 @@
+
+#main{
+	padding: 50px 0;
+}
+
+.page-details p{
+	display: inline-block;
+	padding: 15px;
+	margin-right: 10px;
+}
+
+h1 {
+	margin: 30px 0;
+}
